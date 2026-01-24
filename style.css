@@ -13,7 +13,7 @@ body {
     align-items: center;
     justify-content: center;
     color: #fff;
-    padding: 2rem 1rem;
+    padding: 1rem;
     text-transform: lowercase;
 }
 
@@ -21,7 +21,7 @@ body {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    padding: 3rem;
+    padding: 2rem;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border: 1px solid rgba(255, 255, 255, 0.18);
     text-align: center;
@@ -30,19 +30,19 @@ body {
 
 .event-info h2 {
     font-size: 2.5rem;
-    margin: 1.5rem 0;
+    margin: 0.75rem 0;
     font-weight: 600;
 }
 
 .countdown {
-    margin: 0 0 2rem 0;
+    margin: 0 0 1rem 0;
 }
 
 .countdown-display {
     font-size: 4rem;
     font-weight: 700;
     background: rgba(255, 255, 255, 0.2);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 15px;
     box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
     cursor: help;
@@ -55,33 +55,34 @@ body {
 
 .event-date {
     font-size: 1.2rem;
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
     opacity: 0.9;
     font-weight: 300;
 }
 
 .page-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 300;
-    margin-bottom: 2rem;
+    margin-bottom: 0.75rem;
     text-align: center;
+    max-width: 400px;
 }
 
 .upcoming-section {
-    margin-top: 2rem;
+    margin-top: 1rem;
     text-align: center;
     max-width: 400px;
 }
 
 .upcoming-label {
     font-size: 1.2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     opacity: 0.9;
 }
 
 .upcoming-list-item {
     font-size: 1.5rem;
-    margin: 0.5rem 0;
+    margin: 0.25rem 0;
 }
 
 .upcoming-list-item.haircut {
@@ -89,17 +90,49 @@ body {
 }
 
 @media (max-width: 600px) {
+    body {
+        padding: 0.5rem;
+    }
+
     .container {
         min-width: 90%;
-        padding: 2rem;
+        padding: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
     }
 
     .event-info h2 {
         font-size: 1.8rem;
+        margin: 0.5rem 0;
+    }
+
+    .countdown {
+        margin: 0 0 0.75rem 0;
     }
 
     .countdown-display {
         font-size: 2.5rem;
-        padding: 1.5rem;
+        padding: 1.25rem;
+    }
+
+    .event-date {
+        font-size: 1.1rem;
+        margin-top: 0.5rem;
+    }
+
+    .upcoming-section {
+        margin-top: 0.75rem;
+    }
+
+    .upcoming-label {
+        margin-bottom: 0.25rem;
+    }
+
+    .upcoming-list-item {
+        font-size: 1.3rem;
+        margin: 0.2rem 0;
     }
 }
