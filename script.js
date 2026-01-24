@@ -68,6 +68,8 @@ function formatCountdown(eventDate) {
 
 // Format date for display
 function formatEventDate(date) {
+    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const dayOfWeek = daysOfWeek[date.getDay()];
     const month = date.getMonth() + 1; // getMonth() is 0-indexed
     const day = date.getDate();
     const hours = date.getHours();
@@ -78,7 +80,7 @@ function formatEventDate(date) {
     const hours12 = hours % 12 || 12; // Convert 0 to 12 for midnight
     const minutesFormatted = minutes.toString().padStart(2, '0');
 
-    return `${month}/${day} ${hours12}:${minutesFormatted} ${period}`;
+    return `${dayOfWeek} ${month}/${day} ${hours12}:${minutesFormatted} ${period}`;
 }
 
 // Update the display
