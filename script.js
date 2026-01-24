@@ -114,13 +114,43 @@ function formatEventDate(date) {
     return `${dayOfWeek} ${month}/${day} ${hours12}:${minutesFormatted} ${period}`;
 }
 
+// Format date for upcoming list (just day and date)
+function formatUpcomingDate(date) {
+    const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    const dayOfWeek = daysOfWeek[date.getDay()];
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${dayOfWeek} ${month}/${day}`;
+}
+
+// Populate upcoming events list
+function populateUpcomingList() {
+    const now = new Date();
+    const futureEvents = events
+        .filter(event => event.datetime > now)
+        .sort((a, b) => a.datetime - b.datetime);
+
+    const upcomingListElement = document.getElementById('upcoming-list');
+    upcomingListElement.innerHTML = '';
+
+    futureEvents.forEach(event => {
+        const div = document.createElement('div');
+        div.className = 'upcoming-list-item';
+        if (event.name.toLowerCase() === 'haircut') {
+            div.classList.add('haircut');
+        }
+        div.textContent = formatUpcomingDate(event.datetime);
+        upcomingListElement.appendChild(div);
+    });
+}
+
 // Update the display
 function updateCountdown() {
     const nearestEvent = getNearestEvent();
     const countdownElement = document.getElementById('countdown').querySelector('.countdown-display');
 
     if (!nearestEvent) {
-        document.getElementById('event-name').textContent = 'No upcoming events';
+        document.getElementById('event-name').textContent = 'no upcoming events';
         countdownElement.textContent = '--';
         countdownElement.title = '';
         document.getElementById('event-date').textContent = '';
@@ -134,5 +164,6 @@ function updateCountdown() {
 }
 
 // Initialize and update every second
+populateUpcomingList();
 updateCountdown();
 setInterval(updateCountdown, 1000);
