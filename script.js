@@ -128,7 +128,8 @@ function populateUpcomingList() {
     const now = new Date();
     const futureEvents = events
         .filter(event => event.datetime > now)
-        .sort((a, b) => a.datetime - b.datetime);
+        .sort((a, b) => a.datetime - b.datetime)
+        .slice(1); // Skip the first event (shown in countdown box)
 
     const upcomingListElement = document.getElementById('upcoming-list');
     upcomingListElement.innerHTML = '';
