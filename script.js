@@ -66,6 +66,37 @@ function formatCountdown(eventDate) {
     return `${hours} ${hours === 1 ? 'hour' : 'hours'} ${minutesRoundedUp} ${minutesRoundedUp === 1 ? 'minute' : 'minutes'}`;
 }
 
+// Format full time breakdown for tooltip
+function formatFullBreakdown(eventDate) {
+    const now = new Date();
+    const diff = eventDate - now;
+
+    if (diff <= 0) {
+        return "Event has started!";
+    }
+
+    const totalMilliseconds = diff;
+    const totalSeconds = Math.floor(totalMilliseconds / 1000);
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+    const totalDays = Math.floor(totalHours / 24);
+
+    const days = totalDays;
+    const hours = totalHours % 24;
+    const minutes = totalMinutes % 60;
+
+    const parts = [];
+    if (days > 0) {
+        parts.push(`${days} ${days === 1 ? 'day' : 'days'}`);
+    }
+    if (hours > 0 || days > 0) {
+        parts.push(`${hours} ${hours === 1 ? 'hour' : 'hours'}`);
+    }
+    parts.push(`${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`);
+
+    return parts.join(' ');
+}
+
 // Format date for display
 function formatEventDate(date) {
     const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -86,17 +117,19 @@ function formatEventDate(date) {
 // Update the display
 function updateCountdown() {
     const nearestEvent = getNearestEvent();
+    const countdownElement = document.getElementById('countdown').querySelector('.countdown-display');
 
     if (!nearestEvent) {
         document.getElementById('event-name').textContent = 'No upcoming events';
-        document.getElementById('countdown').querySelector('.countdown-display').textContent = '--';
+        countdownElement.textContent = '--';
+        countdownElement.title = '';
         document.getElementById('event-date').textContent = '';
         return;
     }
 
     document.getElementById('event-name').textContent = nearestEvent.name;
-    document.getElementById('countdown').querySelector('.countdown-display').textContent =
-        formatCountdown(nearestEvent.datetime);
+    countdownElement.textContent = formatCountdown(nearestEvent.datetime);
+    countdownElement.title = formatFullBreakdown(nearestEvent.datetime);
     document.getElementById('event-date').textContent = formatEventDate(nearestEvent.datetime);
 }
 
