@@ -1,10 +1,11 @@
 // Hard-coded list of events
 const events = [
-    { name: "Haircut Appointment", datetime: new Date("2026-01-27T14:00:00") },
-    { name: "Birthday Party", datetime: new Date("2026-02-15T18:30:00") },
-    { name: "Dentist Checkup", datetime: new Date("2026-01-25T10:00:00") },
-    { name: "Team Meeting", datetime: new Date("2026-01-30T09:00:00") },
-    { name: "Vacation Trip", datetime: new Date("2026-03-10T06:00:00") }
+    { name: "Buzz", datetime: new Date("2026-02-03T19:30:00") },
+    { name: "Buzz", datetime: new Date("2026-02-24T15:00:00") },
+    { name: "Haircut", datetime: new Date("2026-03-31T15:00:00") },
+    { name: "Buzz", datetime: new Date("2026-05-02T15:45:00") },
+    { name: "Buzz", datetime: new Date("2026-05-26T13:00:00") },
+    { name: "Haircut", datetime: new Date("2026-06-16T13:00:00") }
 ];
 
 // Find the nearest future event
@@ -67,15 +68,17 @@ function formatCountdown(eventDate) {
 
 // Format date for display
 function formatEventDate(date) {
-    const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    };
-    return date.toLocaleDateString('en-US', options);
+    const month = date.getMonth() + 1; // getMonth() is 0-indexed
+    const day = date.getDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    // Convert to 12-hour format
+    const period = hours >= 12 ? 'PM' : 'AM';
+    const hours12 = hours % 12 || 12; // Convert 0 to 12 for midnight
+    const minutesFormatted = minutes.toString().padStart(2, '0');
+
+    return `${month}/${day} ${hours12}:${minutesFormatted} ${period}`;
 }
 
 // Update the display
