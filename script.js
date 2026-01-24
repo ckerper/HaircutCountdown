@@ -149,19 +149,26 @@ function populateUpcomingList() {
 function updateCountdown() {
     const nearestEvent = getNearestEvent();
     const countdownElement = document.getElementById('countdown').querySelector('.countdown-display');
+    const eventDateElement = document.getElementById('event-date');
 
     if (!nearestEvent) {
-        document.getElementById('event-name').textContent = 'no upcoming events';
         countdownElement.textContent = '--';
         countdownElement.title = '';
-        document.getElementById('event-date').textContent = '';
+        eventDateElement.textContent = '';
+        eventDateElement.classList.remove('haircut');
         return;
     }
 
-    document.getElementById('event-name').textContent = nearestEvent.name;
     countdownElement.textContent = formatCountdown(nearestEvent.datetime);
     countdownElement.title = formatFullBreakdown(nearestEvent.datetime);
-    document.getElementById('event-date').textContent = formatEventDate(nearestEvent.datetime);
+    eventDateElement.textContent = formatEventDate(nearestEvent.datetime);
+
+    // Bold the date if it's a haircut
+    if (nearestEvent.name.toLowerCase() === 'haircut') {
+        eventDateElement.classList.add('haircut');
+    } else {
+        eventDateElement.classList.remove('haircut');
+    }
 }
 
 // Initialize and update every second
