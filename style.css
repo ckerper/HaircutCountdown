@@ -7,6 +7,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -91,8 +92,8 @@ body {
     body {
         padding: 1.5rem 0.5rem 0 0.5rem;
         justify-content: flex-start;
-        min-height: 100vh;
-        max-height: 100vh;
+        min-height: 100dvh;
+        height: 100dvh;
         overflow: hidden;
     }
 
