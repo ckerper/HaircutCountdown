@@ -40,9 +40,11 @@ function formatCountdown(eventDate) {
     const TWO_DAYS_IN_HOURS = 48;
     const ONE_DAY_IN_HOURS = 24;
 
-    // More than 2 days away: show days only (rounded down)
+    // More than 2 days away: show days only (rounded up)
     if (totalHours > TWO_DAYS_IN_HOURS) {
-        return `${totalDays} ${totalDays === 1 ? 'day' : 'days'}`;
+        const remainingHours = totalHours % 24;
+        const daysRoundedUp = remainingHours > 0 ? totalDays + 1 : totalDays;
+        return `${daysRoundedUp} ${daysRoundedUp === 1 ? 'day' : 'days'}`;
     }
 
     // <= 48 hours but > 24 hours: show days and hours (rounded down)
