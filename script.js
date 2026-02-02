@@ -52,14 +52,14 @@ function formatCountdown(eventDate) {
         const days = Math.floor(totalHours / 24);
         const hours = totalHours % 24;
 
-        return `${days} ${days === 1 ? 'day' : 'days'} ${hours} ${hours === 1 ? 'hour' : 'hours'}`;
+        return `<span class="countdown-unit">${days} ${days === 1 ? 'day' : 'days'}</span> <span class="countdown-unit">${hours} ${hours === 1 ? 'hour' : 'hours'}</span>`;
     }
 
     // <= 24 hours: show hours and minutes (minutes floored)
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
 
-    return `${hours} ${hours === 1 ? 'hour' : 'hours'} ${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`;
+    return `<span class="countdown-unit">${hours} ${hours === 1 ? 'hour' : 'hours'}</span> <span class="countdown-unit">${minutes} ${minutes === 1 ? 'minute' : 'minutes'}</span>`;
 }
 
 // Format full time breakdown for tooltip
@@ -155,7 +155,7 @@ function updateCountdown() {
         return;
     }
 
-    countdownElement.textContent = formatCountdown(nearestEvent.datetime);
+    countdownElement.innerHTML = formatCountdown(nearestEvent.datetime);
     countdownElement.title = formatFullBreakdown(nearestEvent.datetime);
     eventDateElement.textContent = formatEventDate(nearestEvent.datetime);
 

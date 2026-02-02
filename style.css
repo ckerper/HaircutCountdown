@@ -133,4 +133,8 @@ body {
         font-size: 1.3rem;
         margin: 0.2rem 0;
     }
+
+    .countdown-unit {
+        display: block;
+    }
 }
