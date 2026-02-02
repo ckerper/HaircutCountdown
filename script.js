@@ -40,30 +40,24 @@ function formatCountdown(eventDate) {
     const TWO_DAYS_IN_HOURS = 48;
     const ONE_DAY_IN_HOURS = 24;
 
-    // More than 2 days away: show days only (rounded up)
+    // More than 2 days away: show days only (rounded down)
     if (totalHours > TWO_DAYS_IN_HOURS) {
-        const remainingHours = totalHours % 24;
-        const daysRoundedUp = remainingHours > 0 ? totalDays + 1 : totalDays;
-        return `${daysRoundedUp} ${daysRoundedUp === 1 ? 'day' : 'days'}`;
+        return `${totalDays} ${totalDays === 1 ? 'day' : 'days'}`;
     }
 
-    // <= 48 hours but > 24 hours: show days and hours (rounded up)
+    // <= 48 hours but > 24 hours: show days and hours (rounded down)
     if (totalHours > ONE_DAY_IN_HOURS) {
         const days = Math.floor(totalHours / 24);
         const hours = totalHours % 24;
-        const remainingMinutes = totalMinutes % 60;
-        const hoursRoundedUp = remainingMinutes > 0 ? hours + 1 : hours;
 
-        return `${days} ${days === 1 ? 'day' : 'days'} ${hoursRoundedUp} ${hoursRoundedUp === 1 ? 'hour' : 'hours'}`;
+        return `${days} ${days === 1 ? 'day' : 'days'} ${hours} ${hours === 1 ? 'hour' : 'hours'}`;
     }
 
-    // <= 24 hours: show hours and minutes (rounded up)
+    // <= 24 hours: show hours and minutes (rounded down)
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
-    const remainingSeconds = totalSeconds % 60;
-    const minutesRoundedUp = remainingSeconds > 0 ? minutes + 1 : minutes;
 
-    return `${hours} ${hours === 1 ? 'hour' : 'hours'} ${minutesRoundedUp} ${minutesRoundedUp === 1 ? 'minute' : 'minutes'}`;
+    return `${hours} ${hours === 1 ? 'hour' : 'hours'} ${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`;
 }
 
 // Format full time breakdown for tooltip
