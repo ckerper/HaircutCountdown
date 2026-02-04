@@ -170,4 +170,7 @@ function updateCountdown() {
 // Initialize and update every second
 populateUpcomingList();
 updateCountdown();
-setInterval(updateCountdown, 1000);
+setInterval(() => {
+    updateCountdown();
+    populateUpcomingList();
+}, 1000);
