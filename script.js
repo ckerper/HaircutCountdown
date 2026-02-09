@@ -1,7 +1,7 @@
 // Hard-coded list of events
 const events = [
     { name: "Buzz", datetime: new Date("2026-02-03T19:30:00") },
-    { name: "Buzz", datetime: new Date("2026-02-24T15:00:00") },
+    { name: "Buzz", datetime: new Date("2026-03-03T19:00:00") },
     { name: "Haircut", datetime: new Date("2026-03-31T15:00:00") },
     { name: "Buzz", datetime: new Date("2026-05-02T15:45:00") },
     { name: "Buzz", datetime: new Date("2026-05-26T13:00:00") },
