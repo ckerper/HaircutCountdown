@@ -5,7 +5,8 @@ const events = [
     { name: "Haircut", datetime: new Date("2026-03-31T15:00:00") },
     { name: "Buzz", datetime: new Date("2026-05-02T15:45:00") },
     { name: "Buzz", datetime: new Date("2026-05-26T13:00:00") },
-    { name: "Haircut", datetime: new Date("2026-06-16T13:00:00") }
+    { name: "Haircut", datetime: new Date("2026-06-16T13:00:00") },
+    { name: "Buzz", datetime: new Date("2026-07-11T10:00:00") }
 ];
 
 // Find the nearest future event
